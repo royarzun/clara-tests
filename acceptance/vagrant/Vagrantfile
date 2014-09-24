@@ -1,0 +1,25 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+
+  clara_nodes = { :platform => "10.11.1.100",
+                  :dpe1 => "10.11.1.101",
+                  :dpe2 => "10.11.1.102",
+                }
+
+  clara_nodes.each do | node_name, node_ip |
+    config.vm.define node_name do | node_config |
+      node_config.vm.box = "raring64"
+      node_config.vm.hostname = node_name.to_s
+      node_config.vm.network :private_network, ip: node_ip
+      # node_config.vm.provision :shell, :inline => "sudo apt-get update"
+      node_config.vm.synced_folder ENV['CLARA_SERVICES'], "/home/vagrant/clas12/services"
+      node_config.vm.provision :puppet do | puppet |
+        puppet.manifests_path = "provision/manifests"
+        puppet.manifests_file = "default.pp"
+        puppet.module_path = "provision/modules"
+      end
+    end
+  end
+end
