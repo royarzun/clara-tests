@@ -1,15 +1,15 @@
 # CLARa Utils
 
-## Install
-Build
+## How to Install
+- Build
 
-gem build clara-utils.gemspec
+  $ gem build clara-utils.gemspec
 
-Install
+- Install
 
-gem instal clara-utils-0.0.1.gem 
+  $ gem instal clara-utils-0.0.1.gem 
 
 ## How to use
 In the ruby code 
 
-require 'clara-utils'
+  $ require 'clara-utils'
