@@ -1,7 +1,9 @@
 # CLARa Utils
 
 ## How to Install
+
 - Build
+
   ```
   $ gem build clara-utils.gemspec
   ```
